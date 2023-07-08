@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  api:
+    container_name: flbackend
+    build: .
+    restart: on-failure
+    volumes:
+      - ./:/webapps
+      - ./log/:/var/log/apps
+    ports:
+      - 7020:5002
+    environment:
+      - PYTHONUNBUFFERED=true
+    env_file:
+      - .env
+    command: python3 manage.py run
+    # command: supervisord -n -c /etc/supervisor.d/supervisord.conf
