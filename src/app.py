@@ -28,6 +28,7 @@ def create_app(config=None, app_name=None):
     app.config['CORS_HEADERS'] = 'Content-Type'
     app.static_url_path = ''
     app.static_folder = 'src/static'
+    os.makedirs('src/static', exist_ok=True)
     configure_app(app, config)
     configure_extensions(app)
     configure_blueprints(app)
